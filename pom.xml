@@ -11,7 +11,7 @@
 	<groupId>fr.vilment.universite</groupId>
 	<artifactId>universite-back-av</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>universite-back</name>
+	<name>universite-back-av</name>
 	<description>Demo project for Spring Boot BACK</description>
 
 	<properties>
