@@ -7,9 +7,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.vilment.universite.enseignant.controller.IEnseignantController;
@@ -40,5 +44,44 @@ public class EnseignantControllerImpl implements IEnseignantController {
 	public Enseignant getEnseignant(@PathVariable int id) {
 		
 		return eS.selectOn(id);
+	}
+	
+	@Override
+	@PostMapping(value = "/saveEnseignant")
+	public Enseignant saveEnseignant(@RequestBody Enseignant ens) {
+		
+		return eS.newEnseignant(ens);
+	}
+	
+	@Override
+	@PutMapping(value = "/updateEnseignant")
+	public Enseignant updateEnseignant(@RequestBody Enseignant ens) {
+		
+		return eS.newEnseignant(ens);
+	}
+	
+	@Override
+	@DeleteMapping(value = "/delEnseignant/{id}")
+	public void delEnseignant(@PathVariable int id) {
+		
+		eS.deleteOne(id);
+	}
+	
+	@Override
+	@GetMapping(value = "/enseignants/search/{search}")
+	public List<Enseignant> chercherEnseignant(@PathVariable String search) {
+		return eS.findEnseignantByNom(search);
+	}
+	
+	@Override
+	@GetMapping(value = "enseignants/triAsc")
+	public List<Enseignant> triEnseignantAsc() {
+		return eS.findAllByOrderByNom();
+	}
+	
+	@Override
+	@GetMapping(value = "enseignants/triDesc")
+	public List<Enseignant> triEnseignantDesc() {
+		return eS.findAllByOrderByNomDesc();
 	}
 }

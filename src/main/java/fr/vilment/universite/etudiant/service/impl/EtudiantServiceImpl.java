@@ -38,9 +38,9 @@ public class EtudiantServiceImpl implements IEtudiantService{
 	}
 
 	@Override
-	public void newEtudiant(Etudiant etu) {
+	public Etudiant newEtudiant(Etudiant etu) {
 		// TODO Auto-generated method stub
-		eR.save(etu);
+		return eR.save(etu);
 	}
 
 	@Override

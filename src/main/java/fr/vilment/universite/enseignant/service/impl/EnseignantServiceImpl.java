@@ -90,7 +90,7 @@ public class EnseignantServiceImpl implements IEnseignantService {
 	@Override
 	public List<Enseignant> findEnseignantByNom(String nom) {
 		// TODO Auto-generated method stub
-		List<Enseignant> lE = eR.findEnseignantByNom(nom);
+		List<Enseignant> lE = eR.findEnseignantByNomStartingWith(nom);
 		if(lE.size() == 1) {
 			Enseignant e = lE.get(0);
 			checkPhoto(e);

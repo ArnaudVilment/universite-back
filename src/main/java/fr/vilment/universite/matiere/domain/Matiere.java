@@ -1,5 +1,6 @@
 package fr.vilment.universite.matiere.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,12 +13,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import fr.vilment.universite.enseignant.domain.Enseignant;
 import fr.vilment.universite.note.domain.Note;
 
 @Entity
 @Table(name = "T_MATIERE")
-public class Matiere {
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class Matiere implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

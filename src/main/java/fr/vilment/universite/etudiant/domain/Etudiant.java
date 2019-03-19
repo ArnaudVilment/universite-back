@@ -1,5 +1,6 @@
 package fr.vilment.universite.etudiant.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -13,11 +14,15 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import fr.vilment.universite.note.domain.Note;
 
 @Entity
 @Table(name = "T_ETUDIANT")
-public class Etudiant {
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class Etudiant implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -38,6 +43,7 @@ public class Etudiant {
 	private String photo;
 	
 	@OneToMany(mappedBy="etudiant")
+	@JsonIgnore
 	private List<Note> listNote;
 	
 	public int getId() {

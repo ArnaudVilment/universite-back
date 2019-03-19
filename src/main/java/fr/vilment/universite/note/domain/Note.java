@@ -1,5 +1,7 @@
 package fr.vilment.universite.note.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -7,12 +9,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import fr.vilment.universite.etudiant.domain.Etudiant;
 import fr.vilment.universite.matiere.domain.Matiere;
 
 @Entity
 @Table(name = "T_NOTE")
-public class Note {
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class Note implements Serializable {
 
 	@EmbeddedId
     private NotePK notePK;

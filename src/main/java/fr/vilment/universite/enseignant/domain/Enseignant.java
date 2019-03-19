@@ -15,9 +15,11 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import fr.vilment.universite.matiere.domain.Matiere;
+
 
 @Entity
 @Table(name = "T_ENSEIGNANT")
@@ -50,7 +52,8 @@ public class Enseignant implements Serializable {
 	private String photo;
 	
 	@OneToMany(mappedBy="enseignant")
-	private List<fr.vilment.universite.matiere.domain.Matiere> listMatiere;
+	@JsonIgnore
+	private List<Matiere> listMatiere;
 	
 	public int getId() {
 		return id;
