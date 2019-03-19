@@ -30,8 +30,14 @@ public class MatiereControllerImpl implements IMatiereController {
 	}
 	
 	@Override
-	@GetMapping(path="/matieresEns{idEns}")
+	@GetMapping(path="/matieresEns/{idEns}")
 	public List<Matiere> selectAllMatiereEns(@PathVariable int idEns) {
+		return mS.selectAllMatiereNonEns(idEns);
+	}
+	
+	@Override
+	@GetMapping(path="/matieresNonEns/{idEns}")
+	public List<Matiere> selectAllMatiereNonEns(@PathVariable int idEns) {
 		return mS.selectAllMatiereNonEns(idEns);
 	}
 }

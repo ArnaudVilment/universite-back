@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.vilment.universite.enseignant.controller.IEnseignantController;
 import fr.vilment.universite.enseignant.domain.Enseignant;
 import fr.vilment.universite.enseignant.service.impl.EnseignantServiceImpl;
+import fr.vilment.universite.matiere.domain.Matiere;
 import fr.vilment.universite.matiere.service.impl.MatiereServiceImpl;
 
 @RestController
@@ -42,8 +43,10 @@ public class EnseignantControllerImpl implements IEnseignantController {
 	@Override
 	@GetMapping(value = "/Enseignant/{id}")
 	public Enseignant getEnseignant(@PathVariable int id) {
-		
-		return eS.selectOn(id);
+		Enseignant ens =  eS.selectOn(id);
+		List<Matiere> lM = mS.selectAllMatiereEns(id);
+		ens.setListMatiere(lM);
+		return ens;
 	}
 	
 	@Override

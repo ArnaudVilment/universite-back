@@ -16,7 +16,10 @@ public interface IMatiereRepository extends JpaRepository<Matiere, Integer> {
 	public List<Matiere> findAllByOrderByNomDesc();
 
 	@Query(value="select * from t_matiere where id_enseignant != :id_enseignant or id_enseignant is null", nativeQuery=true)
-	public List<Matiere> findAllNonEns(@Param("id_enseignant") int id_enseignant);
+	public List<Matiere> findAllMatiereNonEns(@Param("id_enseignant") int id_enseignant);
+	
+	@Query(value="select * from t_matiere where id_enseignant = :id_enseignant or id_enseignant is null", nativeQuery=true)
+	public List<Matiere> findAllMatiereEns(@Param("id_enseignant") int id_enseignant);
 	
 	@Query(value="select * from t_matiere where id = :id_matiere", nativeQuery=true)
 	public List<Matiere> findAllByIdMatiere(@Param("id_matiere") int id_matiere);
