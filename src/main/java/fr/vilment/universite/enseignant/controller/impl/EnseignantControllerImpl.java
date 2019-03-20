@@ -23,6 +23,7 @@ import fr.vilment.universite.matiere.domain.Matiere;
 import fr.vilment.universite.matiere.service.impl.MatiereServiceImpl;
 
 @RestController
+
 public class EnseignantControllerImpl implements IEnseignantController {
 
 	// Logger
@@ -44,8 +45,7 @@ public class EnseignantControllerImpl implements IEnseignantController {
 	@GetMapping(value = "/Enseignant/{id}")
 	public Enseignant getEnseignant(@PathVariable int id) {
 		Enseignant ens =  eS.selectOn(id);
-		List<Matiere> lM = mS.selectAllMatiereEns(id);
-		ens.setListMatiere(lM);
+
 		return ens;
 	}
 	

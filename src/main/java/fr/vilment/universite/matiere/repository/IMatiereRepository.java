@@ -13,17 +13,12 @@ import fr.vilment.universite.matiere.domain.Matiere;
 public interface IMatiereRepository extends JpaRepository<Matiere, Integer> {
 
 	public List<Matiere> findAllByOrderByNom();
-	public List<Matiere> findAllByOrderByNomDesc();
-
+	public List<Matiere> findAllByOrderByNomDesc();	
+	public List<Matiere> findMatiereByNomStartingWith(String nom);
+	
 	@Query(value="select * from t_matiere where id_enseignant != :id_enseignant or id_enseignant is null", nativeQuery=true)
 	public List<Matiere> findAllMatiereNonEns(@Param("id_enseignant") int id_enseignant);
 	
 	@Query(value="select * from t_matiere where id_enseignant = :id_enseignant or id_enseignant is null", nativeQuery=true)
 	public List<Matiere> findAllMatiereEns(@Param("id_enseignant") int id_enseignant);
-	
-	@Query(value="select * from t_matiere where id = :id_matiere", nativeQuery=true)
-	public List<Matiere> findAllByIdMatiere(@Param("id_matiere") int id_matiere);
-	
-	@Query(value="select * from t_matiere where nom like :nom%", nativeQuery=true)
-	public List<Matiere> findMatiereByNom(@Param("nom") String nom);
 }

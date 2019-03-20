@@ -15,5 +15,7 @@ public interface IEnseignantRepository extends JpaRepository<Enseignant, Integer
 	
 	public List<Enseignant> findAllByOrderByNom();
 	public List<Enseignant> findAllByOrderByNomDesc();
-	public List<Enseignant> findEnseignantByNomStartingWith(String nom);
+	public List<Enseignant> findByNomStartingWith(String nom);
+	
+	public List<Enseignant> findByNomContains(String nom);
 }

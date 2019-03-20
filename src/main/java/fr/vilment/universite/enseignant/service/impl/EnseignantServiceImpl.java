@@ -8,12 +8,16 @@ import org.springframework.stereotype.Service;
 import fr.vilment.universite.enseignant.domain.Enseignant;
 import fr.vilment.universite.enseignant.repository.IEnseignantRepository;
 import fr.vilment.universite.enseignant.service.IEnseignantService;
+import fr.vilment.universite.matiere.domain.Matiere;
+import fr.vilment.universite.matiere.repository.IMatiereRepository;
 
 @Service
 public class EnseignantServiceImpl implements IEnseignantService {
 
 	@Autowired
 	private IEnseignantRepository eR;
+	@Autowired
+	private IMatiereRepository mR;
 
 	@Override
 	public List<Enseignant> selectAll() {
@@ -27,7 +31,7 @@ public class EnseignantServiceImpl implements IEnseignantService {
 	public Enseignant selectOn(int id) {
 		// TODO Auto-generated method stub
 		Enseignant ens = eR.getOne(id);
-		checkPhoto(ens);
+
 		return ens;
 	}
 
@@ -90,7 +94,7 @@ public class EnseignantServiceImpl implements IEnseignantService {
 	@Override
 	public List<Enseignant> findEnseignantByNom(String nom) {
 		// TODO Auto-generated method stub
-		List<Enseignant> lE = eR.findEnseignantByNomStartingWith(nom);
+		List<Enseignant> lE = eR.findByNomStartingWith(nom);
 		if(lE.size() == 1) {
 			Enseignant e = lE.get(0);
 			checkPhoto(e);

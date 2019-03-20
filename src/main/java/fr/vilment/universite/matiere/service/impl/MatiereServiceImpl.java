@@ -32,12 +32,6 @@ public class MatiereServiceImpl implements IMatiereService {
 		// TODO Auto-generated method stub
 		return mR.findAllMatiereNonEns(idEns);
 	}
-	
-	@Override
-	public List<Matiere> selectAllMatiereByIdMat(int idMat) {
-		// TODO Auto-generated method stub
-		return mR.findAllByIdMatiere(idMat);
-	}
 
 	@Override
 	public Matiere selectOn(int id) {
@@ -78,7 +72,7 @@ public class MatiereServiceImpl implements IMatiereService {
 	@Override
 	public List<Matiere> findMatiereByNom(String nom) {
 		// TODO Auto-generated method stub
-		List<Matiere> lm = mR.findMatiereByNom(nom);
+		List<Matiere> lm = mR.findMatiereByNomStartingWith(nom);
 		return lm;
 	}
 }

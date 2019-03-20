@@ -16,7 +16,6 @@ public interface IMatiereService {
 	
 	public List<Matiere> selectAllMatiereEns(int idEns);
 	public List<Matiere> selectAllMatiereNonEns(int idEns);
-	public List<Matiere> selectAllMatiereByIdMat(int idMat);
 	
 	public List<Matiere> findMatiereByNom(String nom);
 }
